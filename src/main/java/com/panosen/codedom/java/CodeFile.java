@@ -11,7 +11,9 @@ package com.panosen.codedom.java;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.panosen.codedom.CodeWriter;
 import com.panosen.codedom.java.engine.GenerateOptions;
+import com.panosen.codedom.java.engine.JavaCodeEngine;
 
 import java.util.List;
 import java.util.Map;
@@ -457,6 +459,11 @@ public class CodeFile {
      * @return String
      */
     public String transformText(GenerateOptions options) {
-        throw new UnsupportedOperationException();
+        if (options == null) {
+            options = new GenerateOptions();
+        }
+        StringBuilder builder = new StringBuilder();
+        new JavaCodeEngine().generateCodeFile(this, new CodeWriter(builder), options);
+        return builder.toString();
     }
 }
