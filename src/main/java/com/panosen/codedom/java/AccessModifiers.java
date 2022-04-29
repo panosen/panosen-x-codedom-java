@@ -14,11 +14,6 @@ package com.panosen.codedom.java;
 public enum AccessModifiers {
 
     /**
-     * None
-     */
-    None,
-
-    /**
      * Public
      */
     Public,
@@ -31,5 +26,23 @@ public enum AccessModifiers {
     /**
      * Protected
      */
-    Protected
+    Protected;
+
+    /**
+     * 值
+     *
+     * @return String
+     */
+    public String getValue() {
+        switch (this) {
+            case Public:
+                return "public";
+            case Private:
+                return "private";
+            case Protected:
+                return "protected";
+            default:
+                return "";
+        }
+    }
 }

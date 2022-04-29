@@ -28,12 +28,12 @@ public class CodeField extends CodeMember {
     /**
      * 是否是只读字段
      */
-    private Boolean isFinal;
+    private boolean isFinal;
 
     /**
      * static
      */
-    private Boolean isStatic;
+    private boolean isStatic;
 
     /**
      * 特性
@@ -86,7 +86,7 @@ public class CodeField extends CodeMember {
      *
      * @return Boolean
      */
-    public Boolean getIsFinal() {
+    public boolean getIsFinal() {
         return isFinal;
     }
 
@@ -95,7 +95,7 @@ public class CodeField extends CodeMember {
      *
      * @param isFinal isFinal
      */
-    public void setIsFinal(Boolean isFinal) {
+    public void setIsFinal(boolean isFinal) {
         this.isFinal = isFinal;
     }
 
@@ -104,7 +104,7 @@ public class CodeField extends CodeMember {
      *
      * @return Boolean
      */
-    public Boolean getIsStatic() {
+    public boolean getIsStatic() {
         return isStatic;
     }
 
@@ -113,7 +113,7 @@ public class CodeField extends CodeMember {
      *
      * @param isStatic isStatic
      */
-    public void setIsStatic(Boolean isStatic) {
+    public void setIsStatic(boolean isStatic) {
         this.isStatic = isStatic;
     }
 

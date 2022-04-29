@@ -73,6 +73,38 @@ public class CodeEnum extends CodeObject {
     /**
      * 添加枚举值
      *
+     * @param name name
+     * @return CodeEnumValue
+     */
+    public CodeEnumValue addValue(String name) {
+        return addValue(name, null, null);
+    }
+
+    /**
+     * 添加枚举值
+     *
+     * @param name    name
+     * @param summary summary
+     * @return CodeEnumValue
+     */
+    public CodeEnumValue addValue(String name, String summary) {
+        return addValue(name, summary, null);
+    }
+
+    /**
+     * 添加枚举值
+     *
+     * @param name  name
+     * @param value value
+     * @return CodeEnumValue
+     */
+    public CodeEnumValue addValue(String name, DataItem value) {
+        return addValue(name, null, value);
+    }
+
+    /**
+     * 添加枚举值
+     *
      * @param name    name
      * @param summary summary
      * @param value   value

@@ -61,6 +61,26 @@ public class TryStepBuilder extends StepBuilderCollection {
         this.finallyStepBuilder = finallyStepBuilder;
     }
 
+
+    /**
+     * WithCatch
+     *
+     * @return CatchStepBuilder
+     */
+    public CatchStepBuilder withCatch() {
+        return withCatch(null, null);
+    }
+
+    /**
+     * WithCatch
+     *
+     * @param exceptionType exceptionType
+     * @return CatchStepBuilder
+     */
+    public CatchStepBuilder withCatch(String exceptionType) {
+        return withCatch(exceptionType, null);
+    }
+
     /**
      * WithCatch
      *
@@ -82,12 +102,11 @@ public class TryStepBuilder extends StepBuilderCollection {
     /**
      * WithFinally
      *
-     * @param tryStepBuilder tryStrpBuilder
      * @return FinallyStepBuilder
      */
-    public FinallyStepBuilder withFinally(TryStepBuilder tryStepBuilder) {
+    public FinallyStepBuilder withFinally() {
         FinallyStepBuilder finallyStepBuilder = new FinallyStepBuilder();
-        tryStepBuilder.finallyStepBuilder = finallyStepBuilder;
+        this.finallyStepBuilder = finallyStepBuilder;
         return finallyStepBuilder;
     }
 }

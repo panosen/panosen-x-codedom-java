@@ -18,12 +18,12 @@ public class CodeClass extends CodeObject {
     /**
      * 是否是抽象类
      */
-    private Boolean isAbstract;
+    private boolean isAbstract;
 
     /**
      * final
      */
-    private Boolean isFinal;
+    private boolean isFinal;
 
     /**
      * 访问修饰符
@@ -75,7 +75,7 @@ public class CodeClass extends CodeObject {
      *
      * @return Boolean
      */
-    public Boolean getIsAbstract() {
+    public boolean getIsAbstract() {
         return isAbstract;
     }
 
@@ -84,7 +84,7 @@ public class CodeClass extends CodeObject {
      *
      * @param isAbstract isAbstract
      */
-    public void setIsAbstract(Boolean isAbstract) {
+    public void setIsAbstract(boolean isAbstract) {
         this.isAbstract = isAbstract;
     }
 
@@ -93,7 +93,7 @@ public class CodeClass extends CodeObject {
      *
      * @return Boolean
      */
-    public Boolean getIsFinal() {
+    public boolean getIsFinal() {
         return isFinal;
     }
 
@@ -102,7 +102,7 @@ public class CodeClass extends CodeObject {
      *
      * @param isFinal isFinal
      */
-    public void setIsFinal(Boolean isFinal) {
+    public void setIsFinal(boolean isFinal) {
         this.isFinal = isFinal;
     }
 
@@ -316,7 +316,7 @@ public class CodeClass extends CodeObject {
     /**
      * AddInterface
      *
-     * @param name name
+     * @param name    name
      * @param summary summary
      * @return CodeInterface
      */
@@ -479,12 +479,24 @@ public class CodeClass extends CodeObject {
      * @return CodeProperty
      */
     public CodeProperty addProperty(String type, String name) {
+        return addProperty(type, name, null);
+    }
+
+    /**
+     * AddProperty
+     *
+     * @param name name
+     * @param type type
+     * @return CodeProperty
+     */
+    public CodeProperty addProperty(String type, String name, String summary) {
         if (this.propertyList == null) {
             this.propertyList = Lists.newArrayList();
         }
         CodeProperty codeProperty = new CodeProperty();
         codeProperty.setType(type);
         codeProperty.setName(name);
+        codeProperty.setSummary(summary);
         this.propertyList.add(codeProperty);
         return codeProperty;
     }
@@ -528,12 +540,24 @@ public class CodeClass extends CodeObject {
      * @return CodeField
      */
     public CodeField addField(String type, String name) {
+        return addField(type, name, null);
+    }
+
+    /**
+     * AddField
+     *
+     * @param name name
+     * @param type type
+     * @return CodeField
+     */
+    public CodeField addField(String type, String name, String summary) {
         if (this.fieldList == null) {
             this.fieldList = Lists.newArrayList();
         }
         CodeField codeField = new CodeField();
         codeField.setType(type);
         codeField.setName(name);
+        codeField.setSummary(summary);
         this.fieldList.add(codeField);
         return codeField;
     }
@@ -544,7 +568,7 @@ public class CodeClass extends CodeObject {
      * @param codeConstant codeConstant
      * @return CodeClass
      */
-    public CodeClass AddConstant(CodeConstant codeConstant) {
+    public CodeClass addConstant(CodeConstant codeConstant) {
         if (this.constantList == null) {
             this.constantList = Lists.newArrayList();
         }
@@ -559,13 +583,26 @@ public class CodeClass extends CodeObject {
      * @param name name
      * @return CodeConstant
      */
-    public CodeConstant AddConstant(String type, String name) {
+    public CodeConstant addConstant(String type, String name, String value) {
+        return addConstant(type, name, value, null);
+    }
+
+    /**
+     * AddConstant
+     *
+     * @param type type
+     * @param name name
+     * @return CodeConstant
+     */
+    public CodeConstant addConstant(String type, String name, String value, String summary) {
         if (this.constantList == null) {
             this.constantList = Lists.newArrayList();
         }
         CodeConstant codeConstant = new CodeConstant();
         codeConstant.setName(name);
         codeConstant.setType(type);
+        codeConstant.setValue(value);
+        codeConstant.setSummary(summary);
         this.constantList.add(codeConstant);
         return codeConstant;
     }

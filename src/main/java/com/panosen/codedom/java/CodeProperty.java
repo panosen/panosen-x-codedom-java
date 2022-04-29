@@ -38,7 +38,7 @@ public class CodeProperty extends CodeMember {
     /**
      * static
      */
-    private Boolean isStatic;
+    private boolean isStatic;
 
     /**
      * [getter] 访问修饰符
@@ -117,7 +117,7 @@ public class CodeProperty extends CodeMember {
      *
      * @return Boolean
      */
-    public Boolean getIsStatic() {
+    public boolean getIsStatic() {
         return isStatic;
     }
 
@@ -126,7 +126,7 @@ public class CodeProperty extends CodeMember {
      *
      * @param isStatic isStatic
      */
-    public void setIsStatic(Boolean isStatic) {
+    public void setIsStatic(boolean isStatic) {
         this.isStatic = isStatic;
     }
 

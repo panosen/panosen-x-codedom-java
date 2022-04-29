@@ -43,12 +43,12 @@ public class CodeMethod extends CodeObject {
     /**
      * static
      */
-    private Boolean isStatic;
+    private boolean isStatic;
 
     /**
      * synchronized
      */
-    private Boolean isSynchronized;
+    private boolean isSynchronized;
 
     /**
      * IStepBuilderCollection.StepBuilders
@@ -150,7 +150,7 @@ public class CodeMethod extends CodeObject {
      *
      * @return Boolean
      */
-    public Boolean getIsStatic() {
+    public boolean getIsStatic() {
         return isStatic;
     }
 
@@ -159,7 +159,7 @@ public class CodeMethod extends CodeObject {
      *
      * @param isStatic isStatic
      */
-    public void setIsStatic(Boolean isStatic) {
+    public void setIsStatic(boolean isStatic) {
         this.isStatic = isStatic;
     }
 
@@ -168,7 +168,7 @@ public class CodeMethod extends CodeObject {
      *
      * @return Boolean
      */
-    public Boolean getIsSynchronized() {
+    public boolean getIsSynchronized() {
         return isSynchronized;
     }
 
@@ -177,7 +177,7 @@ public class CodeMethod extends CodeObject {
      *
      * @param isSynchronized isSynchronized
      */
-    public void setIsSynchronized(Boolean isSynchronized) {
+    public void setIsSynchronized(boolean isSynchronized) {
         this.isSynchronized = isSynchronized;
     }
 
@@ -211,6 +211,17 @@ public class CodeMethod extends CodeObject {
         }
         this.parameters.add(parameter);
         return parameter;
+    }
+
+    /**
+     * AddParameter
+     *
+     * @param name    name
+     * @param type    type
+     * @return CodeParameter
+     */
+    public CodeParameter addParameter(String type, String name) {
+        return addParameter(type, name, null);
     }
 
     /**

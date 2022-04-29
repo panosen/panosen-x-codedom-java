@@ -11,10 +11,12 @@ package com.panosen.codedom.java;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.panosen.codedom.java.engine.GenerateOptions;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.SortedMap;
+import java.util.SortedSet;
 
 
 public class CodeFile {
@@ -27,17 +29,17 @@ public class CodeFile {
     /**
      * 系统引用
      */
-    private Map<String, Set<String>> systemImportList;
+    private SortedMap<String, SortedSet<String>> systemImportList;
 
     /**
      * 从nuget包里面的引用
      */
-    private Map<String, Set<String>> mavenImportList;
+    private SortedMap<String, SortedSet<String>> mavenImportList;
 
     /**
      * 当前项目的引用
      */
-    private Map<String, Set<String>> projectImportList;
+    private SortedMap<String, SortedSet<String>> projectImportList;
 
     /**
      * 类
@@ -80,9 +82,9 @@ public class CodeFile {
     /**
      * [getter] 系统引用
      *
-     * @return Map&lt;String, Set&lt;String&gt;&gt;
+     * @return Map&lt;String, SortedSet&lt;String&gt;&gt;
      */
-    public Map<String, Set<String>> getSystemImportList() {
+    public SortedMap<String, SortedSet<String>> getSystemImportList() {
         return systemImportList;
     }
 
@@ -91,16 +93,16 @@ public class CodeFile {
      *
      * @param systemImportList systemImportList
      */
-    public void setSystemImportList(Map<String, Set<String>> systemImportList) {
+    public void setSystemImportList(SortedMap<String, SortedSet<String>> systemImportList) {
         this.systemImportList = systemImportList;
     }
 
     /**
      * [getter] 从nuget包里面的引用
      *
-     * @return Map&lt;String, Set&lt;String&gt;&gt;
+     * @return SortedMap&lt;String, SortedSet&lt;String&gt;&gt;
      */
-    public Map<String, Set<String>> getMavenImportList() {
+    public SortedMap<String, SortedSet<String>> getMavenImportList() {
         return mavenImportList;
     }
 
@@ -109,16 +111,16 @@ public class CodeFile {
      *
      * @param mavenImportList mavenImportList
      */
-    public void setMavenImportList(Map<String, Set<String>> mavenImportList) {
+    public void setMavenImportList(SortedMap<String, SortedSet<String>> mavenImportList) {
         this.mavenImportList = mavenImportList;
     }
 
     /**
      * [getter] 当前项目的引用
      *
-     * @return Map&lt;String, Set&lt;String&gt;&gt;
+     * @return SortedMap&lt;String, SortedSet&lt;String&gt;&gt;
      */
-    public Map<String, Set<String>> getProjectImportList() {
+    public SortedMap<String, SortedSet<String>> getProjectImportList() {
         return projectImportList;
     }
 
@@ -127,7 +129,7 @@ public class CodeFile {
      *
      * @param projectImportList projectImportList
      */
-    public void setProjectImportList(Map<String, Set<String>> projectImportList) {
+    public void setProjectImportList(SortedMap<String, SortedSet<String>> projectImportList) {
         this.projectImportList = projectImportList;
     }
 
@@ -224,11 +226,11 @@ public class CodeFile {
      */
     public void addSystemImport(String fullName) {
         if (this.systemImportList == null) {
-            this.systemImportList = Maps.newHashMap();
+            this.systemImportList = Maps.newTreeMap();
         }
         String packageName = fullName.substring(0, fullName.lastIndexOf("."));
         String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.systemImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.systemImportList.get(packageName).add(name);
     }
 
@@ -240,9 +242,9 @@ public class CodeFile {
      */
     public void addSystemImport(String packageName, String name) {
         if (this.systemImportList == null) {
-            this.systemImportList = Maps.newHashMap();
+            this.systemImportList = Maps.newTreeMap();
         }
-        this.systemImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.systemImportList.get(packageName).add(name);
     }
 
@@ -253,12 +255,12 @@ public class CodeFile {
      */
     public void addSystemImports(List<String> imports) {
         if (this.systemImportList == null) {
-            this.systemImportList = Maps.newHashMap();
+            this.systemImportList = Maps.newTreeMap();
         }
         for (String $import : imports) {
             String packageName = $import.substring(0, $import.lastIndexOf("."));
             String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.systemImportList.putIfAbsent(packageName, Sets.newHashSet());
+            this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
             this.systemImportList.get(packageName).add(name);
         }
     }
@@ -270,11 +272,11 @@ public class CodeFile {
      */
     public void addMavenImport(String fullName) {
         if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newHashMap();
+            this.mavenImportList = Maps.newTreeMap();
         }
         String packageName = fullName.substring(0, fullName.lastIndexOf("."));
         String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.mavenImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.mavenImportList.get(packageName).add(name);
     }
 
@@ -286,9 +288,9 @@ public class CodeFile {
      */
     public void addMavenImport(String packageName, String name) {
         if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newHashMap();
+            this.mavenImportList = Maps.newTreeMap();
         }
-        this.mavenImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.mavenImportList.get(packageName).add(name);
     }
 
@@ -299,12 +301,12 @@ public class CodeFile {
      */
     public void addMavenImports(List<String> imports) {
         if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newHashMap();
+            this.mavenImportList = Maps.newTreeMap();
         }
         for (String $import : imports) {
             String packageName = $import.substring(0, $import.lastIndexOf("."));
             String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.mavenImportList.putIfAbsent(packageName, Sets.newHashSet());
+            this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
             this.mavenImportList.get(packageName).add(name);
         }
     }
@@ -316,11 +318,11 @@ public class CodeFile {
      */
     public void addProjectImport(String fullName) {
         if (this.projectImportList == null) {
-            this.projectImportList = Maps.newHashMap();
+            this.projectImportList = Maps.newTreeMap();
         }
         String packageName = fullName.substring(0, fullName.lastIndexOf("."));
         String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.projectImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.projectImportList.get(packageName).add(name);
     }
 
@@ -332,9 +334,9 @@ public class CodeFile {
      */
     public void addProjectImport(String packageName, String name) {
         if (this.projectImportList == null) {
-            this.projectImportList = Maps.newHashMap();
+            this.projectImportList = Maps.newTreeMap();
         }
-        this.projectImportList.putIfAbsent(packageName, Sets.newHashSet());
+        this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
         this.projectImportList.get(packageName).add(name);
     }
 
@@ -345,12 +347,12 @@ public class CodeFile {
      */
     public void addProjectImports(List<String> imports) {
         if (this.projectImportList == null) {
-            this.projectImportList = Maps.newHashMap();
+            this.projectImportList = Maps.newTreeMap();
         }
         for (String $import : imports) {
             String packageName = $import.substring(0, $import.lastIndexOf("."));
             String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.projectImportList.putIfAbsent(packageName, Sets.newHashSet());
+            this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
             this.projectImportList.get(packageName).add(name);
         }
     }
@@ -437,5 +439,24 @@ public class CodeFile {
         codeEnum.setSummary(summary);
         this.enumList.add(codeEnum);
         return codeEnum;
+    }
+
+    /**
+     * TransformText
+     *
+     * @return String
+     */
+    public String transformText() {
+        return transformText(null);
+    }
+
+    /**
+     * TransformText
+     *
+     * @param options options
+     * @return String
+     */
+    public String transformText(GenerateOptions options) {
+        throw new UnsupportedOperationException();
     }
 }

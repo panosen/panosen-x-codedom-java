@@ -17,13 +17,13 @@
     <name>Panosen CodeDom Java</name>
 
     <packaging>jar</packaging>
-    <url>https://github.com/panosen/panosen-x-codedom-mysql</url>
+    <url>https://github.com/panosen/panosen-x-codedom-java</url>
     <description>Panosen CodeDom Java.</description>
 
     <licenses>
         <license>
             <name>MIT</name>
-            <url>https://github.com/panosen/panosen-x-codedom-mysql/blob/master/LICENSE</url>
+            <url>https://github.com/panosen/panosen-x-codedom-java/blob/master/LICENSE</url>
         </license>
     </licenses>
 
@@ -55,7 +55,13 @@
         <dependency>
             <groupId>com.panosen</groupId>
             <artifactId>panosen-codedom</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.panosen</groupId>
+            <artifactId>panosen-text-extension</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>
