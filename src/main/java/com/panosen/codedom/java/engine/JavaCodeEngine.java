@@ -17,6 +17,7 @@ import com.panosen.codedom.DataValue;
 import com.panosen.codedom.Marks;
 import com.panosen.codedom.java.*;
 
+import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -66,21 +67,21 @@ public class JavaCodeEngine {
      * Generate
      *
      * @param code    code
-     * @param builder builder
+     * @param stringWriter builder
      */
-    public void generate(Code code, StringBuilder builder) {
-        generate(code, new CodeWriter(builder), null);
+    public void generate(Code code, StringWriter stringWriter) {
+        generate(code, new CodeWriter(stringWriter), null);
     }
 
     /**
      * Generate
      *
      * @param code    code
-     * @param builder builder
+     * @param stringWriter builder
      * @param options options
      */
-    public void generate(Code code, StringBuilder builder, GenerateOptions options) {
-        generate(code, new CodeWriter(builder), options);
+    public void generate(Code code, StringWriter stringWriter, GenerateOptions options) {
+        generate(code, new CodeWriter(stringWriter), options);
     }
 
     /**

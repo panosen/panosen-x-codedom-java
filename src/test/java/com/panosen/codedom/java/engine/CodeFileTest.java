@@ -8,6 +8,7 @@ import com.panosen.codedom.java.CodeFile;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 public class CodeFileTest {
@@ -17,11 +18,11 @@ public class CodeFileTest {
 
         CodeFile codeFile = PrepareCode();
 
-        StringBuilder builder = new StringBuilder();
+        StringWriter stringWriter = new StringWriter();
 
-        new JavaCodeEngine().generateCodeFile(codeFile, new CodeWriter(builder));
+        new JavaCodeEngine().generateCodeFile(codeFile, new CodeWriter(stringWriter));
 
-        String actual = builder.toString();
+        String actual = stringWriter.toString();
 
         String expeced = PrepareExpected();
 

@@ -6,6 +6,8 @@ import com.panosen.codedom.java.CodeMethod;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.StringWriter;
+
 public class UT_CodeMethod4 {
 
     @Test
@@ -13,14 +15,14 @@ public class UT_CodeMethod4 {
 
         Code option = PrepareCode();
 
-        StringBuilder builder = new StringBuilder();
+        StringWriter stringWriter = new StringWriter();
 
         GenerateOptions options = new GenerateOptions();
         options.setUseJavaCoc(true);
 
-        new JavaCodeEngine().generate(option, builder, options);
+        new JavaCodeEngine().generate(option, stringWriter, options);
 
-        String actual = builder.toString();
+        String actual = stringWriter.toString();
 
         String expeced = PrepareExpected();
 

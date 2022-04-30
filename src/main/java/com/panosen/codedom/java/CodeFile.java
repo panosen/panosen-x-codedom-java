@@ -15,8 +15,8 @@ import com.panosen.codedom.CodeWriter;
 import com.panosen.codedom.java.engine.GenerateOptions;
 import com.panosen.codedom.java.engine.JavaCodeEngine;
 
+import java.io.StringWriter;
 import java.util.List;
-import java.util.Map;
 import java.util.SortedMap;
 import java.util.SortedSet;
 
@@ -462,8 +462,8 @@ public class CodeFile {
         if (options == null) {
             options = new GenerateOptions();
         }
-        StringBuilder builder = new StringBuilder();
-        new JavaCodeEngine().generateCodeFile(this, new CodeWriter(builder), options);
-        return builder.toString();
+        StringWriter stringWriter = new StringWriter();
+        new JavaCodeEngine().generateCodeFile(this, new CodeWriter(stringWriter), options);
+        return stringWriter.toString();
     }
 }

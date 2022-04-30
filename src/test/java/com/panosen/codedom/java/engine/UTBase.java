@@ -4,6 +4,8 @@ import com.panosen.codedom.java.Code;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.StringWriter;
+
 public abstract class UTBase {
 
     @Test
@@ -11,11 +13,11 @@ public abstract class UTBase {
 
         Code option = PrepareCode();
 
-        StringBuilder builder = new StringBuilder();
+        StringWriter stringWriter = new StringWriter();
 
-        new JavaCodeEngine().generate(option, builder);
+        new JavaCodeEngine().generate(option, stringWriter);
 
-        String actual = builder.toString();
+        String actual = stringWriter.toString();
 
         String expeced = PrepareExpected();
 
