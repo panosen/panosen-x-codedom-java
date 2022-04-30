@@ -30,15 +30,15 @@ public class UT_CodeMethod3 {
     }
 
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * TestMethod\r\n" +
-                " *\r\n" +
-                " * @param name name\r\n" +
-                " * @param age age\r\n" +
-                " */\r\n" +
-                "public void TestMethod(String name, int age) {\r\n" +
-                "\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * TestMethod" + System.lineSeparator() +
+                " *" + System.lineSeparator() +
+                " * @param name name" + System.lineSeparator() +
+                " * @param age age" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public void TestMethod(String name, int age) {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     protected Code PrepareCode() {

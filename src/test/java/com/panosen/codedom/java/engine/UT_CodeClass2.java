@@ -27,51 +27,51 @@ public class UT_CodeClass2 {
     }
 
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * 学生\r\n" +
-                " */\r\n" +
-                "public class Student {\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * 属性 0\r\n" +
-                "     */\r\n" +
-                "    private int property0;\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * TheConstructor\r\n" +
-                "     */\r\n" +
-                "    public TheConstructor() {\r\n" +
-                "    }\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * [getter] 属性 0\r\n" +
-                "     *\r\n" +
-                "     * @return int\r\n" +
-                "     */\r\n" +
-                "    public int getProperty0() {\r\n" +
-                "        return property0;\r\n" +
-                "    }\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * [setter] 属性 0\r\n" +
-                "     *\r\n" +
-                "     * @param property0 property0\r\n" +
-                "     */\r\n" +
-                "    public void setProperty0(int property0) {\r\n" +
-                "        this.property0 = property0;\r\n" +
-                "    }\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * 方法 0\r\n" +
-                "     *\r\n" +
-                "     * @param p1 p1\r\n" +
-                "     * @param p2 okok\r\n" +
-                "     * @param p3 p3\r\n" +
-                "     * @return int\r\n" +
-                "     */\r\n" +
-                "    public int Method0(int p1, int p2, int p3) {\r\n" +
-                "    }\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * 学生" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public class Student {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * 属性 0" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    private int property0;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * TheConstructor" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    public TheConstructor() {" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * [getter] 属性 0" + System.lineSeparator() +
+                "     *" + System.lineSeparator() +
+                "     * @return int" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    public int getProperty0() {" + System.lineSeparator() +
+                "        return property0;" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * [setter] 属性 0" + System.lineSeparator() +
+                "     *" + System.lineSeparator() +
+                "     * @param property0 property0" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    public void setProperty0(int property0) {" + System.lineSeparator() +
+                "        this.property0 = property0;" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * 方法 0" + System.lineSeparator() +
+                "     *" + System.lineSeparator() +
+                "     * @param p1 p1" + System.lineSeparator() +
+                "     * @param p2 okok" + System.lineSeparator() +
+                "     * @param p3 p3" + System.lineSeparator() +
+                "     * @return int" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    public int Method0(int p1, int p2, int p3) {" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     protected Code PrepareCode() {

@@ -77,6 +77,7 @@ public class JavaCodeEngine {
      *
      * @param code    code
      * @param builder builder
+     * @param options options
      */
     public void generate(Code code, StringBuilder builder, GenerateOptions options) {
         generate(code, new CodeWriter(builder), options);
@@ -266,7 +267,7 @@ public class JavaCodeEngine {
             options = new GenerateOptions();
         }
 
-        List<String> items = Arrays.asList(assignStringVariableStepBuilder.getValue().split(System.getProperty("line.separator")));
+        List<String> items = Arrays.asList(assignStringVariableStepBuilder.getValue().split(System.lineSeparator()));
 
         if (items.size() == 1) {
             codeWriter.write(options.getIndentString()).writeLine("String " + assignStringVariableStepBuilder.getName() + " = \"" + items.get(0) + "\";");
@@ -904,8 +905,7 @@ public class JavaCodeEngine {
         codeWriter.write(Keywords.INTERFACE).write(Marks.WHITESPACE).write(codeInterface.getName());
 
         if (codeInterface.getBaseInterface() != null) {
-            codeWriter.write(Marks.WHITESPACE).write(Keywords.EXTENDS).write(Marks.WHITESPACE).write(codeInterface.getBaseInterface().getName())
-            ;
+            codeWriter.write(Marks.WHITESPACE).write(Keywords.EXTENDS).write(Marks.WHITESPACE).write(codeInterface.getBaseInterface().getName());
         }
 
         codeWriter.write(Marks.WHITESPACE).writeLine(Marks.LEFT_BRACE);
@@ -945,6 +945,9 @@ public class JavaCodeEngine {
         codeWriter.write(options.getIndentString()).writeLine("/**");
 
         for (String line : lines) {
+            if (Strings.isNullOrEmpty(line)) {
+                continue;
+            }
             codeWriter.write(options.getIndentString()).write(" * ").writeLine(line);
         }
 
@@ -1255,13 +1258,16 @@ public class JavaCodeEngine {
 
         codeWriter.write(options.getIndentString()).writeLine("/**");
         for (String line : lines) {
+            if (Strings.isNullOrEmpty(line)) {
+                continue;
+            }
             codeWriter.write(options.getIndentString()).write(" * ").writeLine(line);
         }
         codeWriter.write(options.getIndentString()).writeLine(" */");
     }
 
     /**
-     * ${param} => ${expression}
+     * ${param} -&gt; ${expression}
      *
      * @param lamda      lamda
      * @param codeWriter codeWriter
@@ -1278,14 +1284,14 @@ public class JavaCodeEngine {
             options = new GenerateOptions();
         }
 
-        // x => new ${ClassName}
+        // x -> new ${ClassName}
         codeWriter.write(lamda.getParameter())
-                .write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.GREATER_THAN).write(Marks.WHITESPACE)
+                .write(Marks.WHITESPACE).write(Marks.MINUS).write(Marks.GREATER_THAN).write(Marks.WHITESPACE)
                 .write(lamda.getExpression());
     }
 
     /**
-     * x => new Studengt()
+     * x -&gt; new Studengt()
      *
      * @param lamda      lamda
      * @param codeWriter codeWriter
@@ -1338,7 +1344,7 @@ public class JavaCodeEngine {
     }
 
     /**
-     * ${param} => ${expression}
+     * ${param} -&gt; ${expression}
      *
      * @param lamda      lamda
      * @param codeWriter codeWriter

@@ -28,12 +28,12 @@ public class UT_CodeMethod4 {
     }
 
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * TestMethod\r\n" +
-                " */\r\n" +
-                "public void TestMethod() {\r\n" +
-                "\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * TestMethod" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public void TestMethod() {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     protected Code PrepareCode() {

@@ -9,31 +9,31 @@ public class UT_CodeEnum2 extends UTBase {
 
     @Override
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * 状态\r\n" +
-                " */\r\n" +
-                "public enum Status {\r\n" +
-                "\r\n" +
-                "    None(),\r\n" +
-                "\r\n" +
-                "    Active(1),\r\n" +
-                "\r\n" +
-                "    Inactive(2);\r\n" +
-                "\r\n" +
-                "    private final int value;\r\n" +
-                "\r\n" +
-                "    Status() {\r\n" +
-                "        this.value = 0;\r\n" +
-                "    }\r\n" +
-                "\r\n" +
-                "    Status(int value) {\r\n" +
-                "        this.value = value;\r\n" +
-                "    }\r\n" +
-                "\r\n" +
-                "    public int getValue() {\r\n" +
-                "        return value;\r\n" +
-                "    }\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * 状态" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public enum Status {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    None()," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    Active(1)," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    Inactive(2);" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    private final int value;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    Status() {" + System.lineSeparator() +
+                "        this.value = 0;" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    Status(int value) {" + System.lineSeparator() +
+                "        this.value = value;" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    public int getValue() {" + System.lineSeparator() +
+                "        return value;" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     @Override

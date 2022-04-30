@@ -487,6 +487,7 @@ public class CodeClass extends CodeObject {
      *
      * @param name name
      * @param type type
+     * @param summary summary
      * @return CodeProperty
      */
     public CodeProperty addProperty(String type, String name, String summary) {
@@ -548,6 +549,7 @@ public class CodeClass extends CodeObject {
      *
      * @param name name
      * @param type type
+     * @param summary summary
      * @return CodeField
      */
     public CodeField addField(String type, String name, String summary) {
@@ -581,6 +583,7 @@ public class CodeClass extends CodeObject {
      *
      * @param type type
      * @param name name
+     * @param value value
      * @return CodeConstant
      */
     public CodeConstant addConstant(String type, String name, String value) {
@@ -592,6 +595,8 @@ public class CodeClass extends CodeObject {
      *
      * @param type type
      * @param name name
+     * @param value value
+     * @param summary summary
      * @return CodeConstant
      */
     public CodeConstant addConstant(String type, String name, String value, String summary) {

@@ -29,21 +29,21 @@ public class CodeFileTest {
     }
 
     private String PrepareExpected() {
-        return "package abc;\r\n" +
-                "\r\n" +
-                "import system.a1;\r\n" +
-                "import system.a2;\r\n" +
-                "\r\n" +
-                "import maven.a1;\r\n" +
-                "import maven.a2;\r\n" +
-                "\r\n" +
-                "import project.a1;\r\n" +
-                "import project.a2;\r\n" +
-                "import project.c1;\r\n" +
-                "import project.c2;\r\n" +
-                "\r\n" +
-                "public class T {\r\n" +
-                "}\r\n";
+        return "package abc;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "import system.a1;" + System.lineSeparator() +
+                "import system.a2;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "import maven.a1;" + System.lineSeparator() +
+                "import maven.a2;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "import project.a1;" + System.lineSeparator() +
+                "import project.a2;" + System.lineSeparator() +
+                "import project.c1;" + System.lineSeparator() +
+                "import project.c2;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "public class T {" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     private CodeFile PrepareCode() {

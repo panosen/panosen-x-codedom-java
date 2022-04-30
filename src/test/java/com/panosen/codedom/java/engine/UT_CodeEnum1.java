@@ -8,32 +8,32 @@ public class UT_CodeEnum1 extends UTBase {
 
     @Override
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * 状态\r\n" +
-                " */\r\n" +
-                "public enum Status {\r\n" +
-                "\r\n" +
-                "    A_0,\r\n" +
-                "\r\n" +
-                "    A_1,\r\n" +
-                "\r\n" +
-                "    A_2,\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * of 0\r\n" +
-                "     */\r\n" +
-                "    B_0,\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * of 1\r\n" +
-                "     */\r\n" +
-                "    B_1,\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * of 2\r\n" +
-                "     */\r\n" +
-                "    B_2\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * 状态" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public enum Status {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    A_0," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    A_1," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    A_2," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * of 0" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    B_0," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * of 1" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    B_1," + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * of 2" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    B_2" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     @Override

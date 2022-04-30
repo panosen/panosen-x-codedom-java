@@ -7,48 +7,48 @@ public class UT_CodeMethod1 extends UTBase {
 
     @Override
     protected String PrepareExpected() {
-        return "public void TestMethod(string name, int age) {\r\n" +
-                "    name = age.ToString();\r\n" +
-                "    name = age.ToString();\r\n" +
-                "    try {\r\n" +
-                "        int a = 0;\r\n" +
-                "    } catch {\r\n" +
-                "        //something 1\r\n" +
-                "        11111\r\n" +
-                "    } catch (Exception) {\r\n" +
-                "        222\r\n" +
-                "    } catch (Exception e) {\r\n" +
-                "    } finally {\r\n" +
-                "        333\r\n" +
-                "    }\r\n" +
-                "    if (1) {\r\n" +
-                "        ok\r\n" +
-                "    } else if (b) {\r\n" +
-                "        333\r\n" +
-                "    } else {\r\n" +
-                "        okok\r\n" +
-                "    }\r\n" +
-                "    String sql = \"INSERT INTO `esmanage`.`field`\"\r\n" +
-                "            + \"(`cluster_id`,\"\r\n" +
-                "            + \"`document_id`,\"\r\n" +
-                "            + \"`id`,\"\r\n" +
-                "            + \"`name`,\"\r\n" +
-                "            + \"`field_type`,\"\r\n" +
-                "            + \"`remark`,\"\r\n" +
-                "            + \"`data_status`,\"\r\n" +
-                "            + \"`create_time`,\"\r\n" +
-                "            + \"`last_update_time`)\"\r\n" +
-                "            + \"VALUES\"\r\n" +
-                "            + \"(<{ cluster_id: }>,\"\r\n" +
-                "            + \"<{ document_id: }>,\"\r\n" +
-                "            + \"<{ id: }>,\"\r\n" +
-                "            + \"<{ name: }>,\"\r\n" +
-                "            + \"<{ field_type: }>,\"\r\n" +
-                "            + \"<{ remark: }>,\"\r\n" +
-                "            + \"<{ data_status: 0}>,\"\r\n" +
-                "            + \"<{ create_time: }>,\"\r\n" +
-                "            + \"<{ last_update_time: }>);\";\r\n" +
-                "}\r\n";
+        return "public void TestMethod(string name, int age) {" + System.lineSeparator() +
+                "    name = age.ToString();" + System.lineSeparator() +
+                "    name = age.ToString();" + System.lineSeparator() +
+                "    try {" + System.lineSeparator() +
+                "        int a = 0;" + System.lineSeparator() +
+                "    } catch {" + System.lineSeparator() +
+                "        //something 1" + System.lineSeparator() +
+                "        11111" + System.lineSeparator() +
+                "    } catch (Exception) {" + System.lineSeparator() +
+                "        222" + System.lineSeparator() +
+                "    } catch (Exception e) {" + System.lineSeparator() +
+                "    } finally {" + System.lineSeparator() +
+                "        333" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "    if (1) {" + System.lineSeparator() +
+                "        ok" + System.lineSeparator() +
+                "    } else if (b) {" + System.lineSeparator() +
+                "        333" + System.lineSeparator() +
+                "    } else {" + System.lineSeparator() +
+                "        okok" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "    String sql = \"INSERT INTO `esmanage`.`field`\"" + System.lineSeparator() +
+                "            + \"(`cluster_id`,\"" + System.lineSeparator() +
+                "            + \"`document_id`,\"" + System.lineSeparator() +
+                "            + \"`id`,\"" + System.lineSeparator() +
+                "            + \"`name`,\"" + System.lineSeparator() +
+                "            + \"`field_type`,\"" + System.lineSeparator() +
+                "            + \"`remark`,\"" + System.lineSeparator() +
+                "            + \"`data_status`,\"" + System.lineSeparator() +
+                "            + \"`create_time`,\"" + System.lineSeparator() +
+                "            + \"`last_update_time`)\"" + System.lineSeparator() +
+                "            + \"VALUES\"" + System.lineSeparator() +
+                "            + \"(<{ cluster_id: }>,\"" + System.lineSeparator() +
+                "            + \"<{ document_id: }>,\"" + System.lineSeparator() +
+                "            + \"<{ id: }>,\"" + System.lineSeparator() +
+                "            + \"<{ name: }>,\"" + System.lineSeparator() +
+                "            + \"<{ field_type: }>,\"" + System.lineSeparator() +
+                "            + \"<{ remark: }>,\"" + System.lineSeparator() +
+                "            + \"<{ data_status: 0}>,\"" + System.lineSeparator() +
+                "            + \"<{ create_time: }>,\"" + System.lineSeparator() +
+                "            + \"<{ last_update_time: }>);\";" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     @Override
@@ -89,25 +89,25 @@ public class UT_CodeMethod1 extends UTBase {
         ifStepBuilder.withElse().stepStatement("okok");
 
         codeMethod.stepAssignStringVariable("sql", "" +
-                "INSERT INTO `esmanage`.`field`\r\n" +
-                "(`cluster_id`,\r\n" +
-                "`document_id`,\r\n" +
-                "`id`,\r\n" +
-                "`name`,\r\n" +
-                "`field_type`,\r\n" +
-                "`remark`,\r\n" +
-                "`data_status`,\r\n" +
-                "`create_time`,\r\n" +
-                "`last_update_time`)\r\n" +
-                "VALUES\r\n" +
-                "(<{ cluster_id: }>,\r\n" +
-                "<{ document_id: }>,\r\n" +
-                "<{ id: }>,\r\n" +
-                "<{ name: }>,\r\n" +
-                "<{ field_type: }>,\r\n" +
-                "<{ remark: }>,\r\n" +
-                "<{ data_status: 0}>,\r\n" +
-                "<{ create_time: }>,\r\n" +
+                "INSERT INTO `esmanage`.`field`" + System.lineSeparator() +
+                "(`cluster_id`," + System.lineSeparator() +
+                "`document_id`," + System.lineSeparator() +
+                "`id`," + System.lineSeparator() +
+                "`name`," + System.lineSeparator() +
+                "`field_type`," + System.lineSeparator() +
+                "`remark`," + System.lineSeparator() +
+                "`data_status`," + System.lineSeparator() +
+                "`create_time`," + System.lineSeparator() +
+                "`last_update_time`)" + System.lineSeparator() +
+                "VALUES" + System.lineSeparator() +
+                "(<{ cluster_id: }>," + System.lineSeparator() +
+                "<{ document_id: }>," + System.lineSeparator() +
+                "<{ id: }>," + System.lineSeparator() +
+                "<{ name: }>," + System.lineSeparator() +
+                "<{ field_type: }>," + System.lineSeparator() +
+                "<{ remark: }>," + System.lineSeparator() +
+                "<{ data_status: 0}>," + System.lineSeparator() +
+                "<{ create_time: }>," + System.lineSeparator() +
                 "<{ last_update_time: }>);");
 
         return codeMethod;

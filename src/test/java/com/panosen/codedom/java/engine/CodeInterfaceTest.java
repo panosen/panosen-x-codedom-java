@@ -7,26 +7,26 @@ public class CodeInterfaceTest extends UTBase {
 
     @Override
     protected String PrepareExpected() {
-        return "/**\r\n" +
-                " * 学生\r\n" +
-                " */\r\n" +
-                "public interface IStudentRepository {\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * 方法 0\r\n" +
-                "     */\r\n" +
-                "    int Method0(int p1, int p2, int p3);\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * 方法 1\r\n" +
-                "     */\r\n" +
-                "    int Method1(int p1, int p2, int p3);\r\n" +
-                "\r\n" +
-                "    /**\r\n" +
-                "     * 方法 2\r\n" +
-                "     */\r\n" +
-                "    int Method2(int p1, int p2, int p3);\r\n" +
-                "}\r\n";
+        return "/**" + System.lineSeparator() +
+                " * 学生" + System.lineSeparator() +
+                " */" + System.lineSeparator() +
+                "public interface IStudentRepository {" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * 方法 0" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    int Method0(int p1, int p2, int p3);" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * 方法 1" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    int Method1(int p1, int p2, int p3);" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "    /**" + System.lineSeparator() +
+                "     * 方法 2" + System.lineSeparator() +
+                "     */" + System.lineSeparator() +
+                "    int Method2(int p1, int p2, int p3);" + System.lineSeparator() +
+                "}" + System.lineSeparator();
     }
 
     @Override
