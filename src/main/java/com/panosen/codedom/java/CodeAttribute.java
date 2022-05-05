@@ -70,7 +70,7 @@ public class CodeAttribute extends CodeObject {
      * @param value value
      * @return CodeAttribute
      */
-    public CodeAttribute AddPlainParam(String value) {
+    public CodeAttribute addPlainParam(String value) {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
@@ -85,7 +85,7 @@ public class CodeAttribute extends CodeObject {
      * @param value value
      * @return CodeAttribute
      */
-    public CodeAttribute AddStringParam(String value) {
+    public CodeAttribute addStringParam(String value) {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
@@ -101,7 +101,7 @@ public class CodeAttribute extends CodeObject {
      * @param value value
      * @return CodeAttribute
      */
-    public CodeAttribute AddPlainParam(String key, String value) {
+    public CodeAttribute addPlainParam(String key, String value) {
         if (this.paramMap == null) {
             this.paramMap = Maps.newHashMap();
         }
@@ -117,7 +117,7 @@ public class CodeAttribute extends CodeObject {
      * @param value value
      * @return CodeAttribute
      */
-    public CodeAttribute AddStringParam(String key, String value) {
+    public CodeAttribute addStringParam(String key, String value) {
         if (this.paramMap == null) {
             this.paramMap = Maps.newHashMap();
         }
