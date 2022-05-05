@@ -66,7 +66,7 @@ public class JavaCodeEngine {
     /**
      * Generate
      *
-     * @param code    code
+     * @param code         code
      * @param stringWriter builder
      */
     public void generate(Code code, StringWriter stringWriter) {
@@ -76,9 +76,9 @@ public class JavaCodeEngine {
     /**
      * Generate
      *
-     * @param code    code
+     * @param code         code
      * @param stringWriter builder
-     * @param options options
+     * @param options      options
      */
     public void generate(Code code, StringWriter stringWriter, GenerateOptions options) {
         generate(code, new CodeWriter(stringWriter), options);
@@ -303,32 +303,46 @@ public class JavaCodeEngine {
             options = new GenerateOptions();
         }
 
-        List<String> items = Lists.newArrayList();
-        if (codeAttribute.getParamList() != null && !codeAttribute.getParamList().isEmpty()) {
-            items.addAll(codeAttribute.getParamList().stream().map(this::ToValue).collect(Collectors.toList()));
+        codeWriter.write(Marks.AT).write(codeAttribute.getName() != null ? codeAttribute.getName() : "");
+
+        boolean hasLisParam = codeAttribute.getParamList() != null && !codeAttribute.getParamList().isEmpty();
+        boolean hasMapParam = codeAttribute.getParamMap() != null && !codeAttribute.getParamMap().isEmpty();
+
+        if (hasLisParam || hasMapParam) {
+            codeWriter.write(Marks.LEFT_BRACKET);
         }
-        if (codeAttribute.getParamMap() != null && !codeAttribute.getParamMap().isEmpty()) {
-            items.addAll(codeAttribute.getParamMap().entrySet().stream().map(v -> v.getKey() + " = " + ToValue(v.getValue())).collect(Collectors.toList()));
+
+        if (hasLisParam) {
+            Iterator<DataValue> iterator = codeAttribute.getParamList().iterator();
+            boolean hasNext = iterator.hasNext();
+            while (hasNext) {
+                generateDataValue(iterator.next(), codeWriter, options);
+
+                hasNext = iterator.hasNext();
+                if (hasNext || hasMapParam) {
+                    codeWriter.write(Marks.COMMA).write(Marks.WHITESPACE);
+                }
+            }
         }
-        String itemString = items.size() > 0 ? "(" + String.join(", ", items) + ")" : "";
 
-        codeWriter.write(Marks.AT).write(codeAttribute.getName() != null ? codeAttribute.getName() : "").write(itemString);
-    }
+        if (hasMapParam) {
+            Iterator<Map.Entry<String, DataValue>> iterator = codeAttribute.getParamMap().entrySet().iterator();
+            boolean hasNext = iterator.hasNext();
+            while (hasNext) {
+                Map.Entry<String, DataValue> current = iterator.next();
+                codeWriter.write(current.getKey());
+                codeWriter.write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.WHITESPACE);
+                generateDataValue(current.getValue(), codeWriter, options);
 
-    /**
-     * ToValue
-     *
-     * @param codeValue codeValue
-     * @return String
-     */
-    public String ToValue(CodeValue codeValue) {
-        switch (codeValue.getType()) {
-            case STRING:
-                return "\"" + codeValue.getValue() + "\"";
+                hasNext = iterator.hasNext();
+                if (hasNext) {
+                    codeWriter.write(Marks.COMMA).write(Marks.WHITESPACE);
+                }
+            }
+        }
 
-            case PLAIN:
-            default:
-                return codeValue.getValue();
+        if (hasLisParam || hasMapParam) {
+            codeWriter.write(Marks.RIGHT_BRACKET);
         }
     }
 
@@ -851,20 +865,14 @@ public class JavaCodeEngine {
             options.pushIndent();
 
             codeWriter.write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.WHITESPACE);
-            for (int i = 0, length = codeField.getValueList().size(); i < length; i++) {
-                CodeValue codeValue = codeField.getValueList().get(i);
-                switch (codeValue.getType()) {
-                    case PLAIN:
-                        codeWriter.write(codeValue.getValue());
-                        break;
-                    case STRING:
-                        codeWriter.write(Marks.DOUBLE_QUOTATION).write(codeValue.getValue()).write(Marks.DOUBLE_QUOTATION);
-                        break;
-                    default:
-                        break;
-                }
 
-                if (i < length - 1) {
+            Iterator<DataItem> iterator = codeField.getValueList().iterator();
+            boolean hasNext = iterator.hasNext();
+            while (hasNext) {
+                generateDataItem(iterator.next(), codeWriter, options);
+
+                hasNext = iterator.hasNext();
+                if (hasNext) {
                     codeWriter.write(Marks.WHITESPACE).writeLine(Marks.PLUS);
 
                     codeWriter.write(options.getIndentString());
@@ -1143,20 +1151,14 @@ public class JavaCodeEngine {
             options.pushIndent();
 
             codeWriter.write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.WHITESPACE);
-            for (int index = 0, length = codeProperty.getValueList().size(); index < length; index++) {
-                CodeValue codeValue = codeProperty.getValueList().get(index);
-                switch (codeValue.getType()) {
-                    case PLAIN:
-                        codeWriter.write(codeValue.getValue());
-                        break;
-                    case STRING:
-                        codeWriter.write(Marks.DOUBLE_QUOTATION).write(codeValue.getValue()).write(Marks.DOUBLE_QUOTATION);
-                        break;
-                    default:
-                        break;
-                }
 
-                if (index < length - 1) {
+            Iterator<DataItem> iterator = codeProperty.getValueList().iterator();
+            boolean hasNext = iterator.hasNext();
+            while (hasNext) {
+                generateDataItem(iterator.next(), codeWriter, options);
+
+                hasNext = iterator.hasNext();
+                if (hasNext) {
                     codeWriter.write(Marks.WHITESPACE).writeLine(Marks.PLUS);
 
                     codeWriter.write(options.getIndentString());

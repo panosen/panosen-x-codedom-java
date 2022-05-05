@@ -10,6 +10,7 @@ package com.panosen.codedom.java;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.panosen.codedom.DataValue;
 
 import java.util.List;
 import java.util.Map;
@@ -20,19 +21,19 @@ public class CodeAttribute extends CodeObject {
     /**
      * ParamList
      */
-    private List<CodeValue> paramList;
+    private List<DataValue> paramList;
 
     /**
      * ParamMap
      */
-    private Map<String, CodeValue> paramMap;
+    private Map<String, DataValue> paramMap;
 
     /**
      * [getter] ParamList
      *
      * @return List&lt;CodeValue&gt;
      */
-    public List<CodeValue> getParamList() {
+    public List<DataValue> getParamList() {
         return paramList;
     }
 
@@ -41,7 +42,7 @@ public class CodeAttribute extends CodeObject {
      *
      * @param paramList paramList
      */
-    public void setParamList(List<CodeValue> paramList) {
+    public void setParamList(List<DataValue> paramList) {
         this.paramList = paramList;
     }
 
@@ -50,7 +51,7 @@ public class CodeAttribute extends CodeObject {
      *
      * @return Map&lt;String, CodeValue&gt;
      */
-    public Map<String, CodeValue> getParamMap() {
+    public Map<String, DataValue> getParamMap() {
         return paramMap;
     }
 
@@ -59,7 +60,7 @@ public class CodeAttribute extends CodeObject {
      *
      * @param paramMap paramMap
      */
-    public void setParamMap(Map<String, CodeValue> paramMap) {
+    public void setParamMap(Map<String, DataValue> paramMap) {
         this.paramMap = paramMap;
     }
 
@@ -73,11 +74,7 @@ public class CodeAttribute extends CodeObject {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
-
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.PLAIN);
-        codeValue.setValue(value);
-        this.paramList.add(codeValue);
+        this.paramList.add(DataValue.ofString(value));
 
         return this;
     }
@@ -92,11 +89,7 @@ public class CodeAttribute extends CodeObject {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
-
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.STRING);
-        codeValue.setValue(value);
-        this.paramList.add(codeValue);
+        this.paramList.add(DataValue.doubleQuotationString(value));
 
         return this;
     }
@@ -112,11 +105,7 @@ public class CodeAttribute extends CodeObject {
         if (this.paramMap == null) {
             this.paramMap = Maps.newHashMap();
         }
-
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.PLAIN);
-        codeValue.setValue(value);
-        this.paramMap.putIfAbsent(key, codeValue);
+        this.paramMap.putIfAbsent(key, DataValue.ofString(value));
 
         return this;
     }
@@ -132,11 +121,7 @@ public class CodeAttribute extends CodeObject {
         if (this.paramMap == null) {
             this.paramMap = Maps.newHashMap();
         }
-
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.STRING);
-        codeValue.setValue(value);
-        this.paramMap.putIfAbsent(key, codeValue);
+        this.paramMap.putIfAbsent(key, DataValue.doubleQuotationString(value));
 
         return this;
     }

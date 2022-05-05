@@ -317,6 +317,16 @@ public class CodeClass extends CodeObject {
      * AddInterface
      *
      * @param name    name
+     * @return CodeInterface
+     */
+    public CodeInterface addInterface(String name) {
+        return addInterface(name, null);
+    }
+
+    /**
+     * AddInterface
+     *
+     * @param name    name
      * @param summary summary
      * @return CodeInterface
      */
@@ -485,8 +495,8 @@ public class CodeClass extends CodeObject {
     /**
      * AddProperty
      *
-     * @param name name
-     * @param type type
+     * @param name    name
+     * @param type    type
      * @param summary summary
      * @return CodeProperty
      */
@@ -547,8 +557,8 @@ public class CodeClass extends CodeObject {
     /**
      * AddField
      *
-     * @param name name
-     * @param type type
+     * @param name    name
+     * @param type    type
      * @param summary summary
      * @return CodeField
      */
@@ -581,8 +591,8 @@ public class CodeClass extends CodeObject {
     /**
      * AddConstant
      *
-     * @param type type
-     * @param name name
+     * @param type  type
+     * @param name  name
      * @param value value
      * @return CodeConstant
      */
@@ -593,9 +603,9 @@ public class CodeClass extends CodeObject {
     /**
      * AddConstant
      *
-     * @param type type
-     * @param name name
-     * @param value value
+     * @param type    type
+     * @param name    name
+     * @param value   value
      * @param summary summary
      * @return CodeConstant
      */

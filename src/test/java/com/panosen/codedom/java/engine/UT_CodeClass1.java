@@ -1,6 +1,7 @@
 package com.panosen.codedom.java.engine;
 
 import com.google.common.collect.Lists;
+import com.panosen.codedom.DataValue;
 import com.panosen.codedom.java.*;
 
 public class UT_CodeClass1 extends UTBase {
@@ -121,10 +122,7 @@ public class UT_CodeClass1 extends UTBase {
             codeField.setName("SQL1");
 
             for (int i = 0; i < 3; i++) {
-                CodeValue codeValue = new CodeValue();
-                codeValue.setType(CodeValueType.PLAIN);
-                codeValue.setValue("\"plain_field_" + i + "\"");
-                codeField.addValue(codeValue);
+                codeField.addValue(DataValue.ofString("\"plain_field_" + i + "\""));
             }
         }
         {
@@ -134,10 +132,7 @@ public class UT_CodeClass1 extends UTBase {
             codeField.setName("SQL2");
 
             for (int i = 0; i < 3; i++) {
-                CodeValue codeValue = new CodeValue();
-                codeValue.setType(CodeValueType.STRING);
-                codeValue.setValue("string_field_" + i);
-                codeField.addValue(codeValue);
+                codeField.addValue(DataValue.doubleQuotationString("string_field_" + i));
             }
         }
 

@@ -9,6 +9,8 @@ package com.panosen.codedom.java;
  */
 
 import com.google.common.collect.Lists;
+import com.panosen.codedom.DataItem;
+import com.panosen.codedom.DataValue;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class CodeField extends CodeMember {
     /**
      * 值
      */
-    private List<CodeValue> valueList;
+    private List<DataItem> valueList;
 
     /**
      * [getter] 访问修饰符
@@ -140,7 +142,7 @@ public class CodeField extends CodeMember {
      *
      * @return List&lt;CodeValue&gt;
      */
-    public List<CodeValue> getValueList() {
+    public List<DataItem> getValueList() {
         return valueList;
     }
 
@@ -149,7 +151,7 @@ public class CodeField extends CodeMember {
      *
      * @param valueList valueList
      */
-    public void setValueList(List<CodeValue> valueList) {
+    public void setValueList(List<DataItem> valueList) {
         this.valueList = valueList;
     }
 
@@ -189,7 +191,7 @@ public class CodeField extends CodeMember {
      * @param codeValue codeValue
      * @return CodeField
      */
-    public CodeField addValue(CodeValue codeValue) {
+    public CodeField addValue(DataItem codeValue) {
         if (this.valueList == null) {
             this.valueList = Lists.newArrayList();
         }
@@ -207,10 +209,7 @@ public class CodeField extends CodeMember {
         if (this.valueList == null) {
             this.valueList = Lists.newArrayList();
         }
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.STRING);
-        codeValue.setValue(value);
-        this.valueList.add(codeValue);
+        this.valueList.add(DataValue.doubleQuotationString(value));
         return this;
     }
 
@@ -224,10 +223,7 @@ public class CodeField extends CodeMember {
         if (this.valueList == null) {
             this.valueList = Lists.newArrayList();
         }
-        CodeValue codeValue = new CodeValue();
-        codeValue.setType(CodeValueType.PLAIN);
-        codeValue.setValue(value);
-        this.valueList.add(codeValue);
+        this.valueList.add(DataValue.ofString(value));
         return this;
     }
 
