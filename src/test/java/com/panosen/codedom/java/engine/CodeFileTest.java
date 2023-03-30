@@ -32,16 +32,18 @@ public class CodeFileTest {
     private String PrepareExpected() {
         return "package abc;" + System.lineSeparator() +
                 "" + System.lineSeparator() +
-                "import system.a1;" + System.lineSeparator() +
-                "import system.a2;" + System.lineSeparator() +
-                "" + System.lineSeparator() +
                 "import maven.a1;" + System.lineSeparator() +
                 "import maven.a2;" + System.lineSeparator() +
-                "" + System.lineSeparator() +
                 "import project.a1;" + System.lineSeparator() +
                 "import project.a2;" + System.lineSeparator() +
                 "import project.c1;" + System.lineSeparator() +
                 "import project.c2;" + System.lineSeparator() +
+                "import system.a1;" + System.lineSeparator() +
+                "import system.a2;" + System.lineSeparator() +
+                "" + System.lineSeparator() +
+                "import javax.persistence.*;" + System.lineSeparator() +
+                "import java.sql.Timestamp;" + System.lineSeparator() +
+                "import java.sql.Types;" + System.lineSeparator() +
                 "" + System.lineSeparator() +
                 "public class T {" + System.lineSeparator() +
                 "}" + System.lineSeparator();
@@ -51,24 +53,29 @@ public class CodeFileTest {
         CodeFile codeFile = new CodeFile();
         codeFile.setPackageName("abc");
 
-        codeFile.addSystemImport("system.a1");
-        codeFile.addSystemImport("system", "a1");
-        codeFile.addSystemImport("system", "a2");
+        codeFile.addImport("system.a1");
+        codeFile.addImport("system", "a1");
+        codeFile.addImport("system", "a2");
 
-        codeFile.addMavenImport("maven.a1");
-        codeFile.addMavenImport("maven", "a1");
-        codeFile.addMavenImport("maven", "a2");
+        codeFile.addImport("maven.a1");
+        codeFile.addImport("maven", "a1");
+        codeFile.addImport("maven", "a2");
 
-        codeFile.addProjectImport("project.a1");
-        codeFile.addProjectImport("project", "a1");
-        codeFile.addProjectImport("project", "a2");
+        codeFile.addImport("java.sql.Types");
+        codeFile.addImport("java.sql.Timestamp");
+
+        codeFile.addImport("javax.persistence.*");
+
+        codeFile.addImport("project.a1");
+        codeFile.addImport("project", "a1");
+        codeFile.addImport("project", "a2");
 
         ArrayList<String> items = Lists.newArrayList();
         items.add("project.c1");
         items.add("project.c2");
-        codeFile.addProjectImports(items);
+        codeFile.addImports(items);
 
-        codeFile.addProjectImport("abc.TT");
+        codeFile.addImport("abc.TT");
 
         CodeClass codeClass = codeFile.addClass("T");
         codeClass.setAccessModifiers(AccessModifiers.Public);

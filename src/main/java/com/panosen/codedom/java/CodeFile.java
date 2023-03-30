@@ -29,19 +29,9 @@ public class CodeFile {
     private String packageName;
 
     /**
-     * 系统引用
+     * 引用
      */
-    private SortedMap<String, SortedSet<String>> systemImportList;
-
-    /**
-     * 从nuget包里面的引用
-     */
-    private SortedMap<String, SortedSet<String>> mavenImportList;
-
-    /**
-     * 当前项目的引用
-     */
-    private SortedMap<String, SortedSet<String>> projectImportList;
+    private SortedSet<String> importList;
 
     /**
      * 类
@@ -82,57 +72,21 @@ public class CodeFile {
     }
 
     /**
-     * [getter] 系统引用
+     * [getter] 引用
      *
-     * @return Map&lt;String, SortedSet&lt;String&gt;&gt;
+     * @return SortedSet&lt;String&gt;
      */
-    public SortedMap<String, SortedSet<String>> getSystemImportList() {
-        return systemImportList;
+    public SortedSet<String> getImportList() {
+        return importList;
     }
 
     /**
-     * [setter] 系统引用
+     * [setter] 引用
      *
-     * @param systemImportList systemImportList
+     * @param importList importList
      */
-    public void setSystemImportList(SortedMap<String, SortedSet<String>> systemImportList) {
-        this.systemImportList = systemImportList;
-    }
-
-    /**
-     * [getter] 从nuget包里面的引用
-     *
-     * @return SortedMap&lt;String, SortedSet&lt;String&gt;&gt;
-     */
-    public SortedMap<String, SortedSet<String>> getMavenImportList() {
-        return mavenImportList;
-    }
-
-    /**
-     * [setter] 从nuget包里面的引用
-     *
-     * @param mavenImportList mavenImportList
-     */
-    public void setMavenImportList(SortedMap<String, SortedSet<String>> mavenImportList) {
-        this.mavenImportList = mavenImportList;
-    }
-
-    /**
-     * [getter] 当前项目的引用
-     *
-     * @return SortedMap&lt;String, SortedSet&lt;String&gt;&gt;
-     */
-    public SortedMap<String, SortedSet<String>> getProjectImportList() {
-        return projectImportList;
-    }
-
-    /**
-     * [setter] 当前项目的引用
-     *
-     * @param projectImportList projectImportList
-     */
-    public void setProjectImportList(SortedMap<String, SortedSet<String>> projectImportList) {
-        this.projectImportList = projectImportList;
+    public void setImportList(SortedSet<String> importList) {
+        this.importList = importList;
     }
 
     /**
@@ -222,141 +176,40 @@ public class CodeFile {
     }
 
     /**
-     * 添加一个系统引用
+     * 添加一个引用
      *
-     * @param fullName 系统引用
+     * @param fullName 引用
      */
-    public void addSystemImport(String fullName) {
-        if (this.systemImportList == null) {
-            this.systemImportList = Maps.newTreeMap();
+    public void addImport(String fullName) {
+        if (this.importList == null) {
+            this.importList = Sets.newTreeSet();
         }
-        String packageName = fullName.substring(0, fullName.lastIndexOf("."));
-        String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.systemImportList.get(packageName).add(name);
+        this.importList.add(fullName);
     }
 
     /**
-     * 添加一个系统引用
+     * 添加一个引用
      *
      * @param packageName 包
      * @param name        类
      */
-    public void addSystemImport(String packageName, String name) {
-        if (this.systemImportList == null) {
-            this.systemImportList = Maps.newTreeMap();
+    public void addImport(String packageName, String name) {
+        if (this.importList == null) {
+            this.importList = Sets.newTreeSet();
         }
-        this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.systemImportList.get(packageName).add(name);
+        this.importList.add(packageName + "." + name);
     }
 
     /**
-     * 添加一批系统引用
+     * 添加一批引用
      *
-     * @param imports 系统引用
+     * @param imports 引用
      */
-    public void addSystemImports(List<String> imports) {
-        if (this.systemImportList == null) {
-            this.systemImportList = Maps.newTreeMap();
+    public void addImports(List<String> imports) {
+        if (this.importList == null) {
+            this.importList = Sets.newTreeSet();
         }
-        for (String $import : imports) {
-            String packageName = $import.substring(0, $import.lastIndexOf("."));
-            String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.systemImportList.putIfAbsent(packageName, Sets.newTreeSet());
-            this.systemImportList.get(packageName).add(name);
-        }
-    }
-
-    /**
-     * 添加一个Maven引用
-     *
-     * @param fullName 包
-     */
-    public void addMavenImport(String fullName) {
-        if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newTreeMap();
-        }
-        String packageName = fullName.substring(0, fullName.lastIndexOf("."));
-        String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.mavenImportList.get(packageName).add(name);
-    }
-
-    /**
-     * 添加一个Maven引用
-     *
-     * @param packageName 包
-     * @param name        类
-     */
-    public void addMavenImport(String packageName, String name) {
-        if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newTreeMap();
-        }
-        this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.mavenImportList.get(packageName).add(name);
-    }
-
-    /**
-     * 添加一批Maven引用
-     *
-     * @param imports Maven引用
-     */
-    public void addMavenImports(List<String> imports) {
-        if (this.mavenImportList == null) {
-            this.mavenImportList = Maps.newTreeMap();
-        }
-        for (String $import : imports) {
-            String packageName = $import.substring(0, $import.lastIndexOf("."));
-            String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.mavenImportList.putIfAbsent(packageName, Sets.newTreeSet());
-            this.mavenImportList.get(packageName).add(name);
-        }
-    }
-
-    /**
-     * 添加一个项目引用
-     *
-     * @param fullName 项目引用
-     */
-    public void addProjectImport(String fullName) {
-        if (this.projectImportList == null) {
-            this.projectImportList = Maps.newTreeMap();
-        }
-        String packageName = fullName.substring(0, fullName.lastIndexOf("."));
-        String name = fullName.substring(fullName.lastIndexOf(".") + 1);
-        this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.projectImportList.get(packageName).add(name);
-    }
-
-    /**
-     * 添加一个项目引用
-     *
-     * @param packageName 包
-     * @param name        类
-     */
-    public void addProjectImport(String packageName, String name) {
-        if (this.projectImportList == null) {
-            this.projectImportList = Maps.newTreeMap();
-        }
-        this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
-        this.projectImportList.get(packageName).add(name);
-    }
-
-    /**
-     * 添加一批项目引用
-     *
-     * @param imports 项目引用
-     */
-    public void addProjectImports(List<String> imports) {
-        if (this.projectImportList == null) {
-            this.projectImportList = Maps.newTreeMap();
-        }
-        for (String $import : imports) {
-            String packageName = $import.substring(0, $import.lastIndexOf("."));
-            String name = $import.substring($import.lastIndexOf(".") + 1);
-            this.projectImportList.putIfAbsent(packageName, Sets.newTreeSet());
-            this.projectImportList.get(packageName).add(name);
-        }
+        this.importList.addAll(imports);
     }
 
     /**

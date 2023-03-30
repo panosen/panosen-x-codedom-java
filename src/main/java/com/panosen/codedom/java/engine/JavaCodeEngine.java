@@ -19,7 +19,6 @@ import com.panosen.codedom.java.*;
 
 import java.io.StringWriter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class JavaCodeEngine {
 
@@ -485,21 +484,7 @@ public class JavaCodeEngine {
             codeWriter.writeLine(" */");
         }
 
-        List<String> usingList = Lists.newArrayList();
-        addImportList(usingList, codeFile.getSystemImportList(), codeFile.getPackageName());
-        addImportList(usingList, codeFile.getMavenImportList(), codeFile.getPackageName());
-        addImportList(usingList, codeFile.getProjectImportList(), codeFile.getPackageName());
-
-        if (usingList.size() > 0) {
-            for (String usingItem : usingList) {
-                if (Strings.isNullOrEmpty(usingItem)) {
-                    codeWriter.writeLine();
-                    continue;
-                }
-
-                codeWriter.write(Keywords.IMPORT).write(Marks.WHITESPACE).write(usingItem).writeLine(";");
-            }
-        }
+        writeImports(codeFile, codeWriter);
 
         if (codeFile.getClassList() != null && !codeFile.getClassList().isEmpty()) {
             for (CodeClass codeClass : codeFile.getClassList()) {
@@ -523,19 +508,56 @@ public class JavaCodeEngine {
         }
     }
 
-    private static void addImportList(List<String> targetUsingList, SortedMap<String, SortedSet<String>> packageList, String packageName) {
-        if (packageList == null || packageList.isEmpty()) {
+    private static void writeImports(CodeFile codeFile, CodeWriter codeWriter) {
+        if (codeFile.getImportList() == null || codeFile.getImportList().isEmpty()) {
             return;
         }
 
-        targetUsingList.add("");
+        List<String> $javax = Lists.newArrayList();
+        List<String> $java = Lists.newArrayList();
+        List<String> $static = Lists.newArrayList();
 
-        for (Map.Entry<String, SortedSet<String>> entry : packageList.entrySet()) {
-            if (entry.getKey().equals(packageName)) {
+        boolean first = true;
+
+        for (String $import : codeFile.getImportList()) {
+            String packageName = $import.substring(0, $import.lastIndexOf("."));
+
+            if (packageName.equals(codeFile.getPackageName())) {
                 continue;
             }
-            for (String name : entry.getValue()) {
-                targetUsingList.add(entry.getKey() + "." + name);
+            if ($import.startsWith("javax.")) {
+                $javax.add($import);
+                continue;
+            }
+            if ($import.startsWith("java.")) {
+                $java.add($import);
+                continue;
+            }
+            if ($import.startsWith("static")) {
+                $static.add($import);
+                continue;
+            }
+            if (first) {
+                codeWriter.writeLine();
+                first = false;
+            }
+            codeWriter.write(Keywords.IMPORT).write(Marks.WHITESPACE).write($import).writeLine(";");
+        }
+
+        if (!$javax.isEmpty() || !$java.isEmpty()) {
+            codeWriter.writeLine();
+            for (String $import : $javax) {
+                codeWriter.write(Keywords.IMPORT).write(Marks.WHITESPACE).write($import).writeLine(";");
+            }
+            for (String $import : $java) {
+                codeWriter.write(Keywords.IMPORT).write(Marks.WHITESPACE).write($import).writeLine(";");
+            }
+        }
+
+        if (!$static.isEmpty()) {
+            codeWriter.writeLine();
+            for (String $import : $static) {
+                codeWriter.write(Keywords.IMPORT).write(Marks.WHITESPACE).write($import).writeLine(";");
             }
         }
     }
