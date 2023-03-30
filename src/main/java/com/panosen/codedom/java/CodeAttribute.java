@@ -11,6 +11,7 @@ package com.panosen.codedom.java;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.panosen.codedom.DataValue;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 import java.util.Map;
@@ -21,19 +22,14 @@ public class CodeAttribute extends CodeObject {
     /**
      * ParamList
      */
-    private List<DataValue> paramList;
-
-    /**
-     * ParamMap
-     */
-    private Map<String, DataValue> paramMap;
+    private List<CodeAttributeParam> paramList;
 
     /**
      * [getter] ParamList
      *
-     * @return List&lt;CodeValue&gt;
+     * @return List&lt;CodeAttributeParam&gt;
      */
-    public List<DataValue> getParamList() {
+    public List<CodeAttributeParam> getParamList() {
         return paramList;
     }
 
@@ -42,26 +38,8 @@ public class CodeAttribute extends CodeObject {
      *
      * @param paramList paramList
      */
-    public void setParamList(List<DataValue> paramList) {
+    public void setParamList(List<CodeAttributeParam> paramList) {
         this.paramList = paramList;
-    }
-
-    /**
-     * [getter] ParamMap
-     *
-     * @return Map&lt;String, CodeValue&gt;
-     */
-    public Map<String, DataValue> getParamMap() {
-        return paramMap;
-    }
-
-    /**
-     * [setter] ParamMap
-     *
-     * @param paramMap paramMap
-     */
-    public void setParamMap(Map<String, DataValue> paramMap) {
-        this.paramMap = paramMap;
     }
 
     /**
@@ -74,7 +52,9 @@ public class CodeAttribute extends CodeObject {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
-        this.paramList.add(DataValue.ofString(value));
+        CodeAttributeParam codeAttributeParam = new CodeAttributeParam();
+        codeAttributeParam.setValue(DataValue.ofString(value));
+        this.paramList.add(codeAttributeParam);
 
         return this;
     }
@@ -89,7 +69,9 @@ public class CodeAttribute extends CodeObject {
         if (this.paramList == null) {
             this.paramList = Lists.newArrayList();
         }
-        this.paramList.add(DataValue.doubleQuotationString(value));
+        CodeAttributeParam codeAttributeParam = new CodeAttributeParam();
+        codeAttributeParam.setValue(DataValue.doubleQuotationString(value));
+        this.paramList.add(codeAttributeParam);
 
         return this;
     }
@@ -102,10 +84,13 @@ public class CodeAttribute extends CodeObject {
      * @return CodeAttribute
      */
     public CodeAttribute addPlainParam(String key, String value) {
-        if (this.paramMap == null) {
-            this.paramMap = Maps.newHashMap();
+        if (this.paramList == null) {
+            this.paramList = Lists.newArrayList();
         }
-        this.paramMap.putIfAbsent(key, DataValue.ofString(value));
+        CodeAttributeParam codeAttributeParam = new CodeAttributeParam();
+        codeAttributeParam.setKey(key);
+        codeAttributeParam.setValue(DataValue.ofString(value));
+        this.paramList.add(codeAttributeParam);
 
         return this;
     }
@@ -118,11 +103,13 @@ public class CodeAttribute extends CodeObject {
      * @return CodeAttribute
      */
     public CodeAttribute addStringParam(String key, String value) {
-        if (this.paramMap == null) {
-            this.paramMap = Maps.newHashMap();
+        if (this.paramList == null) {
+            this.paramList = Lists.newArrayList();
         }
-        this.paramMap.putIfAbsent(key, DataValue.doubleQuotationString(value));
-
+        CodeAttributeParam codeAttributeParam = new CodeAttributeParam();
+        codeAttributeParam.setKey(key);
+        codeAttributeParam.setValue(DataValue.doubleQuotationString(value));
+        this.paramList.add(codeAttributeParam);
         return this;
     }
 }

@@ -306,32 +306,23 @@ public class JavaCodeEngine {
         codeWriter.write(Marks.AT).write(codeAttribute.getName() != null ? codeAttribute.getName() : "");
 
         boolean hasLisParam = codeAttribute.getParamList() != null && !codeAttribute.getParamList().isEmpty();
-        boolean hasMapParam = codeAttribute.getParamMap() != null && !codeAttribute.getParamMap().isEmpty();
 
-        if (hasLisParam || hasMapParam) {
-            codeWriter.write(Marks.LEFT_BRACKET);
+        if (!hasLisParam) {
+            return;
         }
 
-        if (hasLisParam) {
-            Iterator<DataValue> iterator = codeAttribute.getParamList().iterator();
+        // (
+        codeWriter.write(Marks.LEFT_BRACKET);
+
+        {
+            Iterator<CodeAttributeParam> iterator = codeAttribute.getParamList().iterator();
             boolean hasNext = iterator.hasNext();
             while (hasNext) {
-                generateDataValue(iterator.next(), codeWriter, options);
-
-                hasNext = iterator.hasNext();
-                if (hasNext || hasMapParam) {
-                    codeWriter.write(Marks.COMMA).write(Marks.WHITESPACE);
+                CodeAttributeParam current = iterator.next();
+                if (!Strings.isNullOrEmpty(current.getKey())) {
+                    codeWriter.write(current.getKey());
+                    codeWriter.write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.WHITESPACE);
                 }
-            }
-        }
-
-        if (hasMapParam) {
-            Iterator<Map.Entry<String, DataValue>> iterator = codeAttribute.getParamMap().entrySet().iterator();
-            boolean hasNext = iterator.hasNext();
-            while (hasNext) {
-                Map.Entry<String, DataValue> current = iterator.next();
-                codeWriter.write(current.getKey());
-                codeWriter.write(Marks.WHITESPACE).write(Marks.EQUAL).write(Marks.WHITESPACE);
                 generateDataValue(current.getValue(), codeWriter, options);
 
                 hasNext = iterator.hasNext();
@@ -341,9 +332,8 @@ public class JavaCodeEngine {
             }
         }
 
-        if (hasLisParam || hasMapParam) {
-            codeWriter.write(Marks.RIGHT_BRACKET);
-        }
+        // )
+        codeWriter.write(Marks.RIGHT_BRACKET);
     }
 
     /**
