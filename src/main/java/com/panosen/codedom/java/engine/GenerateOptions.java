@@ -37,6 +37,11 @@ public class GenerateOptions {
     private String indentString;
 
     /**
+     * 简洁，简明
+     */
+    private boolean concision;
+
+    /**
      * [getter] TabString
      *
      * @return String
@@ -99,6 +104,20 @@ public class GenerateOptions {
      */
     public String getIndentString() {
         return indentString;
+    }
+
+    /**
+     *  [getter] 简洁，简明
+     */
+    public boolean getConcision() {
+        return concision;
+    }
+
+    /**
+     * [setter] 简洁，简明
+     */
+    public void setConcision(boolean concision) {
+        this.concision = concision;
     }
 
     /**

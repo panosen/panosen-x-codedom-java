@@ -959,6 +959,9 @@ public class JavaCodeEngine {
         if (options == null) {
             options = new GenerateOptions();
         }
+        if(options.getConcision()){
+            return;
+        }
 
         String summary = !Strings.isNullOrEmpty(codeMethod.getSummary()) ? codeMethod.getSummary() : codeMethod.getName();
         String[] lines = summary.split("[\r\n]");
@@ -1267,6 +1270,9 @@ public class JavaCodeEngine {
         }
         if (options == null) {
             options = new GenerateOptions();
+        }
+        if(options.getConcision()){
+            return;
         }
 
         String[] lines = summary.split("[\r\n]");
