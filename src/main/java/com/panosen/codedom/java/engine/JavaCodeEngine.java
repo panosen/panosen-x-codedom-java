@@ -861,12 +861,12 @@ public class JavaCodeEngine {
             codeWriter.write(AccessModifiers.Private.getValue()).write(Marks.WHITESPACE);
         }
 
-        if (codeField.getIsFinal()) {
-            codeWriter.write(Keywords.FINAL).write(Marks.WHITESPACE);
-        }
-
         if (codeField.getIsStatic()) {
             codeWriter.write(Keywords.STATIC).write(Marks.WHITESPACE);
+        }
+
+        if (codeField.getIsFinal()) {
+            codeWriter.write(Keywords.FINAL).write(Marks.WHITESPACE);
         }
 
         codeWriter.write(codeField.getType()).write(Marks.WHITESPACE);

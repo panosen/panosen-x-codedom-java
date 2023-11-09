@@ -6,7 +6,7 @@
 
     <groupId>com.panosen</groupId>
     <artifactId>panosen-codedom-java</artifactId>
-    <version>0.3.3</version>
+    <version>0.3.4</version>
 
     <parent>
         <groupId>com.panosen</groupId>
